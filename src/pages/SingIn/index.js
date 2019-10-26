@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function SingIn() {
-  return <div />;
+  return <h1>SingIn</h1>;
 }
