@@ -1,4 +1,5 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 import { singInSuccess, singFailure } from './actions';
@@ -17,13 +18,14 @@ export function* singIn({ payload }) {
     const { token, user } = response.data;
 
     if (!user.provider) {
-      console.tron.error('Usuário não é prestador');
+      toast.error('Usuário não é prestador');
     }
 
     yield put(singInSuccess(token, user));
 
     history.push('/dashboard');
   } catch (e) {
+    toast.error('Falha na autenticação, verifique seus dados');
     yield put(singFailure());
   }
 }
